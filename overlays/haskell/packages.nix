@@ -42,6 +42,7 @@ with self.haskell.packages;
       ghc844 = properExtend (properExtend ghc844 sharedOverrides) ghc844overrides;
       ghc865 = properExtend (properExtend ghc865 sharedOverrides) ghc865overrides;
       ghc883 = properExtend (properExtend ghc883 sharedOverrides) ghc883overrides;
+      ghc8101 = properExtend (properExtend ghc8101 sharedOverrides) ghc8101overrides;
       };
     };
   }
