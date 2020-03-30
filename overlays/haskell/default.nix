@@ -7,6 +7,5 @@ in
    composeOverlays
        [(import ./lib.nix)
         (import ./hackage.nix)
-        (import ./hoogle.nix)
         (import ./packages.nix)
        ] self super
