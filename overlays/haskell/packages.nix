@@ -17,7 +17,7 @@ let
                 }) "--no-check --no-haddock" {}));
 
     sharedOverrides = hsself: hssuper: {
-            ghc-check = hsself.callCabal2nix "ghc-check" /home/pepe/code/ghc-check {};
+            ghc-check = hsself.callHackage "ghc-check" "0.1.0.3" {};
             # ghcide = ghcide_head hsself;
             haskell-lsp = (hsself.callHackage "haskell-lsp" "0.21.0.0" {});
             haskell-lsp-types = hsself.callHackage "haskell-lsp-types" "0.21.0.0" {};
