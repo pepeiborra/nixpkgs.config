@@ -19,7 +19,7 @@ let
     sharedOverrides = hsself: hssuper: {
             ghc-check = hsself.callCabal2nix "ghc-check" /home/pepe/code/ghc-check {};
             # ghcide = ghcide_head hsself;
-            haskell-lsp = disableLibraryProfiling(hsself.callHackage "haskell-lsp" "0.21.0.0" {});
+            haskell-lsp = (hsself.callHackage "haskell-lsp" "0.21.0.0" {});
             haskell-lsp-types = hsself.callHackage "haskell-lsp-types" "0.21.0.0" {};
             hie-bios = dontCheck(hsself.callHackage "hie-bios" "0.4.0" {});
             lsp-test = doHaddock(disableLibraryProfiling(dontCheck (hsself.callHackage "lsp-test" "0.10.2.0" {})));
