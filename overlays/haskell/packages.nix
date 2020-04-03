@@ -33,7 +33,19 @@ let
           };
     ghc865overrides = hsself: hssuper: {};
     ghc883overrides = hsself: hssuper: {};
-    ghc8101overrides = hsself: hssuper: {};
+    ghc8101overrides = hsself: hssuper: {
+            doctest  = dontCheck(doJailbreak(hsself.callHackage "doctest" "0.16.3" {}));
+            lens     = dontCheck(doJailbreak(hsself.callHackage "lens" "4.19.1" {}));
+            hackage-security = dontCheck(doJailbreak(hsself.callHackage "hackage-security" "0.6.0.0" {}));
+            cabal-install = dontCheck(doJailbreak(hsself.callHackage "cabal-install" "3.2.0.0" {}));
+            mkDerivation = args: hssuper.mkDerivation (args // {
+                  doCheck = false;
+                  doHaddock = true;
+                  enableLibraryProfiling = true;
+                  enableExecutableProfiling = false;
+                  jailbreak = true;
+                });
+    };
 in
 with self.haskell.packages;
 {
