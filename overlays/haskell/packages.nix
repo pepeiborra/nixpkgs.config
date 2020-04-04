@@ -38,6 +38,7 @@ let
             lens     = dontCheck(doJailbreak(hsself.callHackage "lens" "4.19.1" {}));
             hackage-security = dontCheck(doJailbreak(hsself.callHackage "hackage-security" "0.6.0.0" {}));
             cabal-install = dontCheck(doJailbreak(hsself.callHackage "cabal-install" "3.2.0.0" {}));
+            vault = dontHaddock(hssuper.vault);
             mkDerivation = args: hssuper.mkDerivation (args // {
                   doCheck = false;
                   doHaddock = true;
