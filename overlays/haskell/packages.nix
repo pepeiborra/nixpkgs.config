@@ -47,6 +47,15 @@ let
                   jailbreak = true;
                 });
     };
+    ghcHEADoverrides = hsself: hssuper: ghc8101overrides hsself hssuper // {
+            mkDerivation = args: hssuper.mkDerivation (args // {
+                  doCheck = false;
+                  doHaddock = false;
+                  enableLibraryProfiling = false;
+                  enableExecutableProfiling = false;
+                  jailbreak = true;
+                });
+    };
 in
 with self.haskell.packages;
 {
@@ -56,6 +65,7 @@ with self.haskell.packages;
       ghc865 = properExtend (properExtend ghc865 sharedOverrides) ghc865overrides;
       ghc883 = properExtend (properExtend ghc883 sharedOverrides) ghc883overrides;
       ghc8101 = properExtend (properExtend ghc8101 sharedOverrides) ghc8101overrides;
+      ghcHEAD = properExtend (properExtend ghcHEAD sharedOverrides) ghcHEADoverrides;
       };
     };
   }
