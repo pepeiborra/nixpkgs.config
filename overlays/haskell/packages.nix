@@ -24,6 +24,7 @@ let
             hie-bios = dontCheck(hsself.callHackage "hie-bios" "0.4.0" {});
             lsp-test = doHaddock(disableLibraryProfiling(dontCheck (hsself.callHackage "lsp-test" "0.10.2.0" {})));
             opentelemetry = dontCheck(hsself.callHackage "opentelemetry" "0.3.1" {});
+            retrie = hsself.callHackage "retrie" "0.1.1.0" {};
             time-compat = dontCheck hssuper.time-compat;
             yaml = hsself.callHackage "yaml" "0.11.3.0" {};
     };
