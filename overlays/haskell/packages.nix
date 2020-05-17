@@ -43,7 +43,7 @@ let
             mkDerivation = args: hssuper.mkDerivation (args // {
                   doCheck = false;
                   doHaddock = true;
-                  enableLibraryProfiling = true;
+                  enableLibraryProfiling = false;
                   enableExecutableProfiling = false;
                   jailbreak = true;
                 });
