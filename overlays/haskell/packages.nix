@@ -15,15 +15,20 @@ let
                 rev="5937a82728bc6a89cc529314c911d912941b950d";
                 sha256="1rpbzpaikj11sy7zgs5rqqmsx80wrsminfc38xpmmg5l8mzzamhc";
                 }) "--no-check --no-haddock" {}));
+    ghc-lib-parser_810 = hsself: dontCheck(hsself.callHackage "ghc-lib-parser" "8.10.1.20200412" {});
 
     sharedOverrides = hsself: hssuper: {
+            floskell = dontCheck(hssuper.floskell);
             ghc-check = hsself.callHackage "ghc-check" "0.3.0.1" {};
             haskell-lsp = (hsself.callHackage "haskell-lsp" "0.22.0.0" {});
             haskell-lsp-types = hsself.callHackage "haskell-lsp-types" "0.22.0.0" {};
             hie-bios = doJailbreak(dontCheck(hsself.callHackage "hie-bios" "0.4.0" {}));
             lsp-test = doHaddock(disableLibraryProfiling(dontCheck (hsself.callHackage "lsp-test" "0.10.3.0" {})));
+            monad-dijkstra = dontCheck(hsself.callHackage "monad-dijkstra" "0.1.1.2" {});
             opentelemetry = dontCheck(hsself.callHackage "opentelemetry" "0.3.1" {});
-            retrie = hsself.callHackage "retrie" "0.1.1.0" {};
+            retrie = dontCheck(hsself.callHackage "retrie" "0.1.1.0" {
+              haskell-src-exts = dontCheck(hsself.callHackage "haskell-src-exts" "1.23.0" {});
+            });
             time-compat = dontCheck hssuper.time-compat;
             yaml = hsself.callHackage "yaml" "0.11.3.0" {};
     };
