@@ -18,10 +18,10 @@ let
 
     sharedOverrides = hsself: hssuper: {
             ghc-check = hsself.callHackage "ghc-check" "0.3.0.1" {};
-            haskell-lsp = (hsself.callHackage "haskell-lsp" "0.21.0.0" {});
-            haskell-lsp-types = hsself.callHackage "haskell-lsp-types" "0.21.0.0" {};
-            hie-bios = dontCheck(hsself.callHackage "hie-bios" "0.4.0" {});
-            lsp-test = doHaddock(disableLibraryProfiling(dontCheck (hsself.callHackage "lsp-test" "0.10.2.0" {})));
+            haskell-lsp = (hsself.callHackage "haskell-lsp" "0.22.0.0" {});
+            haskell-lsp-types = hsself.callHackage "haskell-lsp-types" "0.22.0.0" {};
+            hie-bios = doJailbreak(dontCheck(hsself.callHackage "hie-bios" "0.4.0" {}));
+            lsp-test = doHaddock(disableLibraryProfiling(dontCheck (hsself.callHackage "lsp-test" "0.10.3.0" {})));
             opentelemetry = dontCheck(hsself.callHackage "opentelemetry" "0.3.1" {});
             retrie = hsself.callHackage "retrie" "0.1.1.0" {};
             time-compat = dontCheck hssuper.time-compat;
