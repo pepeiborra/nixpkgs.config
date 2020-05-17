@@ -35,17 +35,27 @@ let
     ghc865overrides = hsself: hssuper: {};
     ghc883overrides = hsself: hssuper: {};
     ghc8101overrides = hsself: hssuper: {
+            czipwith = dontCheck(doJailbreak hssuper.czipwith);
+            data-tree-print = dontCheck(doJailbreak hssuper.data-tree-print);
             doctest  = dontCheck(doJailbreak(hsself.callHackage "doctest" "0.16.3" {}));
             lens     = dontCheck(doJailbreak(hsself.callHackage "lens" "4.19.1" {}));
             hackage-security = dontCheck(doJailbreak(hsself.callHackage "hackage-security" "0.6.0.0" {}));
             cabal-install = dontCheck(doJailbreak(hsself.callHackage "cabal-install" "3.2.0.0" {}));
-            vault = dontHaddock(hssuper.vault);
+            vault = doJailbreak(dontHaddock(hssuper.vault));
+            ormolu = dontCheck(hsself.callHackage "ormolu" "0.0.5.0" {
+               ghc-lib-parser = ghc-lib-parser_810 hsself;
+            });
+            ghc-exactprint = hsself.callHackage "ghc-exactprint" "0.6.3" {};
+            hslogger = doJailbreak hssuper.hslogger;
+            tasty-rerun = doJailbreak hssuper.tasty-rerun;
+            safe-exceptions = doJailbreak hssuper.safe-exceptions;
+            sop-core = dontCheck(hsself.callHackage "sop-core" "0.5.0.1" {});
+            generics-sop = dontCheck(hsself.callHackage "generics-sop" "0.5.1.0" {});
             mkDerivation = args: hssuper.mkDerivation (args // {
                   doCheck = false;
                   doHaddock = true;
                   enableLibraryProfiling = false;
                   enableExecutableProfiling = false;
-                  jailbreak = true;
                 });
     };
     ghcHEADoverrides = hsself: hssuper: ghc8101overrides hsself hssuper // {
